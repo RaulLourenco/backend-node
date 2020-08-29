@@ -1,9 +1,19 @@
-import app from './app';
-const http = require('http');
-const normalizePort = require('normalize-port')
+const express = require('express');
 
-// Get port from environment and store in Express.
-const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
-// Create HTTP server.
-const server = http.createServer(app);
+async function startServer() {
+
+  const app = express();
+  const port = process.env.PORT || 8080;
+
+  app.listen(port, err => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log(`Server is ready !`);
+  });
+}
+
+startServer();
+
+export default express;
