@@ -1,11 +1,11 @@
-import { Product } from "./product";
 import { ProductDTO } from "./productsDTO";
 
 export class ProductService {
     
     constructor(private productDTO: ProductDTO) {}
 
-    public async create(product: Product) {
-        this.productDTO.insertOne(product);
+    public async create() {
+        console.log('DEU CERTO!');
+        return {message: 'Cadastrado!'};
     }
 }

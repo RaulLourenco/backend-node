@@ -1,8 +1,8 @@
-import { Product } from "./product";
+import { ProductDTO } from "./productsDTO";
 
 describe('Product Test', () => {
     it('should initialize', () => {
-        const product = new Product();
+        const product = new ProductDTO();
         expect(product).toBeTruthy;
     });
 });
