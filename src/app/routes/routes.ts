@@ -15,7 +15,8 @@ export class Routes {
             });
         });
 
-        app.use('/projects', productAPI);
+        app.use('/products', productAPI);
+
     }
 }
 

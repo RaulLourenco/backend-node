@@ -1,6 +1,9 @@
 import express, {Request, Response} from 'express';
+import { ProductService } from '../../../../components/products/productsService';
 
 export class ProductAPI {
+
+    private productService = new ProductService();
     
     constructor(){ }
     
@@ -9,8 +12,14 @@ export class ProductAPI {
         const router = express.Router();
 
         router.route('/create').post(async (req: Request, res: Response) => {
-            console.log('req', req.body);
+            let result = '';
+            await this.productService.createProduct(req.body).then( res => {
+                result = res;
+            }).catch( err => {
+                console.error(err);
+            });
             res.status(200).json({
+                productID: result,
                 message: 'Created product!'
             });
         });
