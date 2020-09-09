@@ -1,4 +1,4 @@
-import * as express from 'express';
+import express, {Request, Response} from 'express';
 import * as productRoutes from './api/v1/products/products';
 
 export class Routes {
@@ -9,7 +9,7 @@ export class Routes {
 
         const productAPI = new productRoutes.ProductAPI().route();
 
-        app.route('/healthcheck').get(async (req: express.Request, res: express.Response) => {
+        app.route('/healthcheck').get(async (req: Request, res: Response) => {
             res.status(200).json({
                 message: 'Service is healthy'
             });

@@ -1,7 +1,7 @@
 export class Product {
     public name: String;
     public price: Number;
-    public type: Enumerator;
-    public color: Enumerator;
+    public type: Type;
+    public color: Color;
     public availableStores: Array<String>;
 }
