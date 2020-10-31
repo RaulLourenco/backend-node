@@ -9,13 +9,14 @@ export class Routes {
 
         const productAPI = new productRoutes.ProductAPI().route();
 
+
         app.route('/healthcheck').get(async (req: Request, res: Response) => {
             res.status(200).json({
                 message: 'Service is healthy'
             });
         });
 
-        app.use('/products', productAPI);
+        app.use('/api/v1/products', productAPI);
 
     }
 }
