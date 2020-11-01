@@ -1,5 +1,5 @@
 import express, {Request, Response} from 'express';
-import * as productRoutes from './api/v1/products/products';
+import * as messageRoute from './api/v1/messages/message-route';
 
 export class Routes {
 
@@ -7,16 +7,18 @@ export class Routes {
 
     public async routes(app: express.Application) {
 
-        const productAPI = new productRoutes.ProductAPI().route();
+        const api = '/api/v1';
+
+        const messageAPI = new messageRoute.MessageAPI().route();
 
 
-        app.route('/healthcheck').get(async (req: Request, res: Response) => {
+        app.route(`${api}/healthcheck`).get(async (req: Request, res: Response) => {
             res.status(200).json({
                 message: 'Service is healthy'
             });
         });
 
-        app.use('/api/v1/products', productAPI);
+        app.use(`${api}/messages`, messageAPI);
 
     }
 }

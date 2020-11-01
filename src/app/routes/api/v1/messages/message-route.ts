@@ -1,9 +1,9 @@
 import express, {Request, Response} from 'express';
-import { ProductService } from '../../../../components/products/productsService';
+import { MessageService } from '../../../../components/messages/message.service';
 
-export class ProductAPI {
+export class MessageAPI {
 
-    private productService = new ProductService();
+    private messageService = new MessageService();
     
     constructor(){ }
     
@@ -13,7 +13,7 @@ export class ProductAPI {
 
         router.route('/create').post(async (req: Request, res: Response) => {
             let result = '';
-            await this.productService.createProduct(req.body).then( res => {
+            await this.messageService.create(req.body).then( res => {
                 result = res;
             }).catch( err => {
                 console.error(err);

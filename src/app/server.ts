@@ -2,6 +2,7 @@ import app from './app';
 
 const port = process.env.PORT || 8080;
 const server = require('http').createServer()
+import { connect } from './database';
 
 server
     .on('request', app)
@@ -26,4 +27,6 @@ server
         }
     })
     .listen(port)
+   
+   connect();
     
