@@ -4,17 +4,17 @@ import { v4 as uuidv4 } from 'uuid';
 
 const MessageSchema = new Schema({
   _id: { type: String, default: uuidv4},
-  conversationId: String,
+  conversationId: { type: String, default: uuidv4},
   timestamp: Date,
-  from: String,
-  to: String,
+  from: { type: String, default: uuidv4},
+  to: { type: String, default: uuidv4},
   text: String
 });
 
 export function toDTO(messageDTO: Message) {
   return new messageSchema({
     _id: uuidv4(),
-    conversationId: uuidv4(),
+    conversationId: messageDTO.conversationId,
     timestamp: messageDTO.timestamp,
     from: messageDTO.from,
     to: messageDTO.to,

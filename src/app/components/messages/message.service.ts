@@ -7,6 +7,7 @@ export class MessageService {
     private DTO: Message;
     private messageObject: Message;
     
+    
     constructor() {}
 
     public async create(message: Message) {
@@ -19,7 +20,8 @@ export class MessageService {
         };
 
         await this.messageDTO.create(this.messageObject).then( res => {
-            this.DTO = res;
+            console.log('resposta', res);
+            this.DTO = (res === undefined) ? 'Conversation cannot be established, because this bot no exists.' : res;
         }).catch( err => {
             console.error(err);
         });
