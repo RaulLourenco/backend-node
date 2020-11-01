@@ -38,15 +38,17 @@ export class MessageAPI {
             typeof this.result === 'object' ? res.status(200).json(this.result) : res.status(400).json({ message: this.result});
         });
 
-        router.route('/:id').get(async (req: Request, res: Response) => {
-            var id = req.params['id'];
-            await this.messageService.getByid(id).then( res => {
+        router.route('/').get(async (req: Request, res: Response) => {
+
+            var id = req.query.conversationId;
+
+            await this.messageService.getByConversationId(id).then( res => {
                 this.result = res;
             }).catch( err => {
                 console.error(err);
             });
 
-            res.status(200).json(this.result);
+            typeof this.result === 'object' ? res.status(200).json(this.result) : res.status(400).json({ message: this.result});
         });
 
         return router;

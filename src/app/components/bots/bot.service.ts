@@ -36,7 +36,7 @@ export class BotService {
 
     public async getByid(botId: String) {
         await this.botDTO.getById(botId).then( res => {
-            this.DTO = (res === null) ? 'This bot no exists!' : res;;
+            this.DTO = (res === null) ? 'This bot not exists!' : res;;
         }).catch( err => {
             console.error(err);
         });
@@ -51,7 +51,7 @@ export class BotService {
         };
 
         await this.botDTO.update(id, this.botObject).then( res => {
-            this.DTO = (res === undefined) ? 'This bot no exists!' : res;
+            this.DTO = (res === undefined) ? 'This bot not exists!' : res;
         }).catch( err => {
             console.error(err);
         });
@@ -61,7 +61,7 @@ export class BotService {
 
     public async delete(botId: String) {
         await this.botDTO.delete(botId).then( res => {
-            this.DTO = (res === undefined) ? 'This bot no exists!' : res;
+            this.DTO = (res === undefined) ? 'This bot not exists!' : res;
         }).catch( err => {
             console.error(err);
         });

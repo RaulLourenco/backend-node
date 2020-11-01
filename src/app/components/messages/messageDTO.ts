@@ -35,7 +35,7 @@ export class MessageDTO {
 
     public async getByConversationId(conversationId: String) {
         return await messageSchema.find({
-            _id: conversationId
+            conversationId: conversationId
         });
     }
 }
