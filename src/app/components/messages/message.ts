@@ -1,6 +1,6 @@
 export interface Message {
     conversationId: String;
-    timestamp: String;
+    timestamp: Date;
     from: String;
     to: String;
     text: String;

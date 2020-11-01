@@ -1,25 +1,23 @@
-import { toDTO } from '../../database/schemas/message-schema';
+import { messageSchema, toDTO } from '../../database/schemas/message-schema';
 import { Message } from './message';
-import { v4 as uuidv4 } from 'uuid';
 
 export class MessageDTO {
 
     constructor() { }
 
     public async create(message: Message) {
-        const messageDTO = await toDTO(message).save();
-        return messageDTO;
+        return await toDTO(message).save();
     }
 
-    public async get() {
-
+    public async getById(botId: String) {
+        return await messageSchema.findOne({
+            _id: botId
+        });
     }
 
-    public async update() {
-
-    }
-
-    public async delete() {
-
+    public async getByConversationId(conversationId: String) {
+        return await messageSchema.find({
+            _id: conversationId
+        });
     }
 }

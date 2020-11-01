@@ -14,6 +14,9 @@ export class BotAPI {
         const router = express.Router();
 
         router.route('/').post(async (req: Request, res: Response) => {
+            if(Object.keys(req.body).length === 0) {
+                return res.status(400).json({message: 'Body is undefined'});
+            } 
             await this.botService.create(req.body).then( res => {
                 this.result = res;
             }).catch( err => {
@@ -21,7 +24,6 @@ export class BotAPI {
             });
 
             typeof this.result === 'object' ? res.status(200).json(this.result) : res.status(400).json({ message: this.result});
-            
         });
 
         router.route('/:id').get(async (req: Request, res: Response) => {
@@ -32,7 +34,7 @@ export class BotAPI {
                 console.error(err);
             });
 
-            res.status(200).json(this.result);
+            typeof this.result === 'object' ? res.status(200).json(this.result) : res.status(400).json({ message: this.result});
         });
 
         router.route('/').get(async (req: Request, res: Response) => {
@@ -46,7 +48,9 @@ export class BotAPI {
         });
 
         router.route('/:id').put(async (req: Request, res: Response) => {
-
+            if(Object.keys(req.body).length === 0) {
+                return res.status(400).json({message: 'Body is undefined'});
+            } 
             const id = req.params['id'];
 
             await this.botService.update(id, req.body).then( res => {

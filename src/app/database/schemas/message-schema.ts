@@ -1,9 +1,11 @@
-import { Schema, model, mongoose } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { Message } from '../../components/messages/message';
+import { v4 as uuidv4 } from 'uuid';
 
 const MessageSchema = new Schema({
+  _id: { type: String, default: uuidv4},
   conversationId: String,
-  timestamp: String,
+  timestamp: Date,
   from: String,
   to: String,
   text: String
@@ -11,7 +13,8 @@ const MessageSchema = new Schema({
 
 export function toDTO(messageDTO: Message) {
   return new messageSchema({
-    conversationId: messageDTO.conversationId,
+    _id: uuidv4(),
+    conversationId: uuidv4(),
     timestamp: messageDTO.timestamp,
     from: messageDTO.from,
     to: messageDTO.to,
