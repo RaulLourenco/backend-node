@@ -17,7 +17,8 @@ export class MessageService {
            text: message.text
         };
         
-        let DTO = '';
+        let DTO;
+        
         await this.messageDTO.create(messageObj).then( res => {
             console.log(res);
             DTO = res;

@@ -1,34 +1,25 @@
-import { messageSchema } from '../../database/schemas/message-schema';
+import { toDTO } from '../../database/schemas/message-schema';
 import { Message } from './message';
+import { v4 as uuidv4 } from 'uuid';
 
 export class MessageDTO {
 
     constructor() { }
 
-    public async create(messageDTO: Message) {
-
-        const message = await new messageSchema({
-            conversationId: messageDTO.conversationId,
-            timestamp: messageDTO.timestamp,
-            from: messageDTO.from,
-            to: messageDTO.to,
-            text: messageDTO.text
-        }).save();
-
-        console.log('MENSAGEM' , message);
-
-        return message;
+    public async create(message: Message) {
+        const messageDTO = await toDTO(message).save();
+        return messageDTO;
     }
 
     public async get() {
-        
+
     }
 
     public async update() {
-        
+
     }
 
     public async delete() {
-        
+
     }
 }

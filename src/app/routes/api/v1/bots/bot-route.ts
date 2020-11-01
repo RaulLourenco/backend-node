@@ -1,9 +1,9 @@
 import express, {Request, Response} from 'express';
-import { MessageService } from '../../../../components/messages/message.service';
+import { BotService } from '../../../../components/bots/bot.service';
 
-export class MessageAPI {
+export class BotAPI {
 
-    private messageService = new MessageService();
+    private botService = new BotService();
     
     constructor(){ }
     
@@ -13,14 +13,14 @@ export class MessageAPI {
 
         router.route('/create').post(async (req: Request, res: Response) => {
             let result = '';
-            await this.messageService.create(req.body).then( res => {
+            await this.botService.create(req.body).then( res => {
                 result = res;
             }).catch( err => {
                 console.error(err);
             });
             res.status(200).json({
-                messageId: result,
-                message: 'Message sent!'
+                message: 'Bot created!',
+                bot: result
             });
         });
 

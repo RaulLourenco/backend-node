@@ -1,9 +1,16 @@
 import { Schema, model } from 'mongoose';
-  
-export const Bot = new Schema({
-    id: { type: Schema.Types.ObjectId, required: false },
-    name: String
-  });
+import { Bot } from '../../components/bots/bot';
 
-const bots = model("bots", Bot);
-export default bots;
+const Bot = new Schema({
+  id: String,
+  name: String
+});
+
+export function toDTO(botDTO: Bot) {
+  return new botsSchema({
+    id: botDTO.id,
+    name: botDTO.name
+  });
+}
+
+export const botsSchema = model<Bot>("bots", Bot, "bots");
