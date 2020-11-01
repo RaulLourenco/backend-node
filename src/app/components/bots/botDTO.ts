@@ -1,25 +1,35 @@
-import { toDTO } from '../../database/schemas/bot-schema';
+import { botsSchema, toDTO } from '../../database/schemas/bot-schema';
 import { Bot } from './bot';
-import { v4 as uuidv4 } from 'uuid';
 
 export class BotDTO {
 
     constructor() { }
 
     public async create(bot: Bot) {
-        const botDTO = await toDTO(bot).save();
-        return botDTO;
+        return await toDTO(bot).save();
     }
 
-    public async get() {
-
+    public async getById(botId: String) {
+        return await botsSchema.findOne({
+            id: botId
+        });
     }
 
-    public async update() {
-
+    public async getAll() {
+        return await botsSchema.find();
     }
 
-    public async delete() {
 
+    public async update(bot: Bot) {
+        return await botsSchema.findOneAndUpdate({
+            id: bot.id,
+            name: bot.name
+        });
+    }
+
+    public async delete(botId: String) {
+        return await botsSchema.findOneAndDelete({
+            id: botId
+        });
     }
 }
