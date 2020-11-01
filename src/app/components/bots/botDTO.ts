@@ -6,12 +6,15 @@ export class BotDTO {
     constructor() { }
 
     public async create(bot: Bot) {
-        return await toDTO(bot).save();
+        const exists = await botsSchema.findOne({id: bot.id});
+        if(!exists) {
+            return await toDTO(bot).save();
+        }
     }
 
     public async getById(botId: String) {
         return await botsSchema.findOne({
-            id: botId
+            _id: botId
         });
     }
 
@@ -20,11 +23,13 @@ export class BotDTO {
     }
 
 
-    public async update(bot: Bot) {
-        return await botsSchema.findOneAndUpdate({
-            id: bot.id,
-            name: bot.name
-        });
+    public async update(id: String, bot: Bot) {
+        const exists = await botsSchema.findOne({_id: id});
+        if(exists) {
+            return await botsSchema.findOneAndUpdate(
+                { _id: bot.id },
+                { _id: bot.id, name: bot.name});
+        }   
     }
 
     public async delete(botId: String) {

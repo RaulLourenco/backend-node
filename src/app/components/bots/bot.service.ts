@@ -16,7 +16,7 @@ export class BotService {
         };
 
         await this.botDTO.create(this.botObject).then( res => {
-            this.DTO = res;
+            this.DTO = (res === undefined) ? 'This user already exists!' : res;
         }).catch( err => {
             console.error(err);
         });
@@ -44,14 +44,14 @@ export class BotService {
         return this.DTO;
     }
 
-    public async update(bot: Bot) {
+    public async update(id: String, bot: Bot) {
         this.botObject = {
             id: bot.id,
             name: bot.name
         };
 
-        await this.botDTO.update(this.botObject).then( res => {
-            this.DTO = res;
+        await this.botDTO.update(id, this.botObject).then( res => {
+            this.DTO = (res === undefined) ? 'This user no exists!' : res;
         }).catch( err => {
             console.error(err);
         });
