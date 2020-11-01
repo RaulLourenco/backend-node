@@ -61,7 +61,7 @@ export class BotService {
 
     public async delete(botId: String) {
         await this.botDTO.delete(botId).then( res => {
-            this.DTO = res;
+            this.DTO = (res === undefined) ? 'This user no exists!' : res;
         }).catch( err => {
             console.error(err);
         });

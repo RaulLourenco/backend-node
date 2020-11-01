@@ -6,7 +6,7 @@ export class BotDTO {
     constructor() { }
 
     public async create(bot: Bot) {
-        const exists = await botsSchema.findOne({id: bot.id});
+        const exists = await botsSchema.findOne({_id: bot.id});
         if(!exists) {
             return await toDTO(bot).save();
         }
@@ -33,8 +33,11 @@ export class BotDTO {
     }
 
     public async delete(botId: String) {
-        return await botsSchema.findOneAndDelete({
-            id: botId
-        });
+        const exists = await botsSchema.findOne({_id: botId});
+        if(exists) {
+            return await botsSchema.findOneAndDelete({
+                _id: botId
+            });
+        }
     }
 }

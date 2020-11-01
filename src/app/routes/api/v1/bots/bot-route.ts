@@ -68,7 +68,8 @@ export class BotAPI {
                 console.error(err);
             });
             
-            res.status(200).json(this.result);
+            typeof this.result === 'object' ? res.status(200).json({message: 'Deleted succesfully!'}) 
+                                            : res.status(400).json({ message: this.result});
         });
 
         return router;
