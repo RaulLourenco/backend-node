@@ -20,7 +20,6 @@ export class MessageService {
         };
 
         await this.messageDTO.create(this.messageObject).then( res => {
-            console.log('resposta', res);
             this.DTO = (res === undefined) ? 'Conversation cannot be established, because this bot not exists.' : res;
         }).catch( err => {
             console.error(err);

@@ -58,12 +58,12 @@ describe('Bot DTO and Service Test', () => {
         expect(botService).not.toBeFalsy;
     });
 
-    it('should DTO create be functional', async () => {
-        const botDTO = new BotDTO();
-        await botDTO.create(mockBot).then( res => {
-            expect(res).toBe(mockBot);
-        });
-    });
+    // it('should DTO create be functional', async () => {
+    //     const botDTO = new BotDTO();
+    //     await botDTO.create(mockBot).then( res => {
+    //         expect(res).toBe(mockBot);
+    //     });
+    // });
     it('should DTO getById be functional', async () => {
         const botDTO = new BotDTO();
         jest.spyOn(botsSchema, 'findOne').mockImplementation(
