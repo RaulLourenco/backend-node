@@ -60,10 +60,9 @@ describe('Bot DTO and Service Test', () => {
 
     it('should DTO create be functional', async () => {
         const botDTO = new BotDTO();
-        jest.spyOn(botsSchema, 'find').mockImplementation(
-            (obj: any) => Promise.resolve([]) as any
-        );
-        await botDTO.create(mockBot);
+        await botDTO.create(mockBot).then( res => {
+            expect(res).toBe(mockBot);
+        });
     });
     it('should DTO getById be functional', async () => {
         const botDTO = new BotDTO();
