@@ -81,21 +81,11 @@ describe('Message DTO and Service Test', () => {
     // Service Test
 
     it('should Service message create be functional', async () => {
-        const messageService = new MessageService();
-        jest.spyOn(messageSchema, 'find').mockImplementation(
-            () => Promise.resolve([]) as any
-        );
+        const createMock = new MessageService().create(messageMock);
+        expect(createMock).toBeTruthy;
         jest.spyOn(MessageService.prototype, 'create').mockImplementation(
-            async () => Promise.resolve({}) as any
+            async () => Promise.resolve([]) as any
         );
-        jest.spyOn(messageSchema, 'find').mockImplementation(
-            (conditions: any, projection?: (err: any, res: any[]) => any) => ({
-                limit: function (lim: any) {
-                    return { skip: () => 1};
-                },
-            } as any)
-        );
-        await messageService.create(messageMock);
     });
     it('should Service message getById be functional', async () => {
         const messageService = new MessageService();
