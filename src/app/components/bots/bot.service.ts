@@ -34,7 +34,7 @@ export class BotService {
         return this.DTO;
     }
 
-    public async getByid(botId: String) {
+    public async getById(botId: String) {
         await this.botDTO.getById(botId).then( res => {
             this.DTO = (res === null) ? 'This bot not exists!' : res;;
         }).catch( err => {

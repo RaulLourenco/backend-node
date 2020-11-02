@@ -28,7 +28,7 @@ export class BotAPI {
 
         router.route('/:id').get(async (req: Request, res: Response) => {
             var id = req.params['id'];
-            await this.botService.getByid(id).then( res => {
+            await this.botService.getById(id).then( res => {
                 this.result = res;
             }).catch( err => {
                 console.error(err);

@@ -12,7 +12,7 @@ export class MessageAPI {
     public route() {
 
         const router = express.Router();
-
+        
         router.route('/').post(async (req: Request, res: Response) => {
             if(Object.keys(req.body).length === 0) {
                return res.status(400).json({message: 'Body is undefined'});
@@ -29,7 +29,7 @@ export class MessageAPI {
 
         router.route('/:id').get(async (req: Request, res: Response) => {
             var id = req.params['id'];
-            await this.messageService.getByid(id).then( res => {
+            await this.messageService.getById(id).then( res => {
                 this.result = res;
             }).catch( err => {
                 console.error(err);

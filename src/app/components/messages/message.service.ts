@@ -29,7 +29,7 @@ export class MessageService {
         return this.DTO;
     }
 
-    public async getByid(botId: String) {
+    public async getById(botId: String) {
         await this.messageDTO.getById(botId).then( res => {
             this.DTO = (res === null) ? 'This conversation not exists!' : res;
         }).catch( err => {

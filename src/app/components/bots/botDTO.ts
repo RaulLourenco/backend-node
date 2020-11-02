@@ -22,7 +22,6 @@ export class BotDTO {
         return await botsSchema.find();
     }
 
-
     public async update(id: String, bot: Bot) {
         const exists = await botsSchema.findOne({_id: id});
         if(exists) {
